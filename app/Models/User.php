@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,8 +11,9 @@ use Laravel\Cashier\Billable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -30,6 +32,7 @@ class User extends Authenticatable
         'email',
         'password',
         'trial_is_used',
+        'is_admin',
     ];
 
     /**
@@ -52,6 +55,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'trial_is_used' => 'boolean',
+        'is_admin' => 'boolean',
     ];
 
     /**
@@ -62,6 +66,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // Check if user can access panel,
+//        return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+
+        return $this->is_admin;
+    }
 
     public function trialIsUsed()
     {
