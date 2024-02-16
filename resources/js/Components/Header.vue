@@ -13,6 +13,7 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Pricing</a></li>
                     <li><a href="#">How It Works</a></li>
+                    <li><a :href="route('blog.index')">Blog</a></li>
                 </ul>
             </div>
             <a class="btn btn-ghost text-xl">
@@ -29,6 +30,7 @@
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Pricing</a></li>
                 <li><a href="#">How It Works</a></li>
+                <li><a :href="route('blog.index')">Blog</a></li>
             </ul>
         </div>
         <div class="navbar-end">

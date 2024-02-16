@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StripeController;
 use App\Http\Middleware\Subscribed;
@@ -19,6 +20,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{article:slug}', [BlogController::class, 'article'])->name('blog.article');
 
 Route::middleware([
     'auth:sanctum',

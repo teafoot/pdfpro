@@ -26,6 +26,9 @@ class ArticleResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required(),
                 Forms\Components\RichEditor::make('content')
+                    ->fileAttachmentsDisk(config('filesystems.default'))
+                    ->fileAttachmentsDirectory('article')
+                    ->fileAttachmentsVisibility('public')
                     ->required(),
                 Forms\Components\FileUpload::make('thumbnail')
                     ->disk(config('filesystems.default'))

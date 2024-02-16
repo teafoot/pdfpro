@@ -10,6 +10,7 @@ import Plans from "@/Components/Plans.vue";
 import Faq from "@/Components/Faq.vue";
 import CTA from "@/Components/CTA.vue";
 import Seo from "@/Components/Seo.vue";
+import HomeLayout from "@/Layouts/HomeLayout.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -19,24 +20,23 @@ defineProps({
 </script>
 
 <template >
-    <Seo title="LaraFast" description="Ship Your SaaS Faster with LaraFast">
-        <!-- Twitter Card Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Ship Faster with Larafast - Laravel Starter Kit">
-        <meta name="twitter:description" content="Boost your startup with Larafast - Laravel Starter Kit - a powerful solution for efficiency, speed, and success in your entrepreneurial journey. Transform your idea into reality in just a matter of days.">
-        <!-- Add your Twitter handle below -->
-        <meta name="twitter:site" content="@yourTwitterHandle">
-        <meta name="twitter:image" content="/images/hero.jpeg">
-    </Seo>
-    <Header/>
-    <Hero/>
-    <Partners/>
-    <ContentWithImage/>
-    <Plans/>
-    <Faq/>
-    <CTA/>
-    <Footer/>
-    <Copyright/>
+    <HomeLayout>
+        <Seo title="LaraFast" description="Ship Your SaaS Faster with LaraFast">
+            <!-- Twitter Card Tags -->
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Ship Faster with Larafast - Laravel Starter Kit">
+            <meta name="twitter:description" content="Boost your startup with Larafast - Laravel Starter Kit - a powerful solution for efficiency, speed, and success in your entrepreneurial journey. Transform your idea into reality in just a matter of days.">
+            <!-- Add your Twitter handle below -->
+            <meta name="twitter:site" content="@yourTwitterHandle">
+            <meta name="twitter:image" content="/images/hero.jpeg">
+        </Seo>
+        <Hero/>
+        <Partners/>
+        <ContentWithImage/>
+        <Plans/>
+        <Faq/>
+        <CTA/>
+    </HomeLayout>
 </template>
 
 <style>
