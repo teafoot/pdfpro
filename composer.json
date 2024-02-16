@@ -14,6 +14,7 @@
         "laravel/prompts": "^0.1.15",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "spatie/schema-org": "^3.23",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

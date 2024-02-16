@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StripeController;
+use App\Http\Middleware\Subscribed;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,5 +37,9 @@ Route::middleware([
         Route::get('success', [StripeController::class, 'success'])->name('success');
         Route::get('error', [StripeController::class, 'error'])->name('error');
         Route::get('billing', [StripeController::class, 'billing'])->name('billing');
+    });
+
+    Route::middleware([Subscribed::class])->group(function () {
+        // Add endpoints that are only for subscribed users
     });
 });
