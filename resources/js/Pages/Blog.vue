@@ -21,7 +21,7 @@ defineProps({
                 <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <article v-for="article in articles" class="cursor-pointer flex max-w-xl flex-col items-start justify-between">
                         <div class="rounded-xl h-52 w-full overflow-hidden shadow-md">
-                            <img class="object-contain object-center" :src="article.thumbnail" alt="">
+                            <img class="object-contain object-center" :src="article.icon" alt="">
                         </div>
                         <div class="flex items-center gap-x-4 text-xs mt-4">
                             <time datetime="2020-03-16" class="text-gray-500">{{ moment(article.created_at).format('MMM Do, YYYY, HH:mm')}}</time>

@@ -12,8 +12,8 @@ defineProps({
 <template>
     <Head>
         <title v-if="title">{{ title }}</title>
-        <meta v-if="description" name="description" :content="description">
-        <meta v-if="keywords" name="keywords" :content="keywords">
+        <meta v-if="description" head-key="description" name="description" :content="description">
+        <meta v-if="keywords" head-key="keywords" name="keywords" :content="keywords">
         <link rel="canonical" :href="canonical ?? $page.url">
 
         <slot/>

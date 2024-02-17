@@ -36,4 +36,19 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'trial_period_days' => env('STRIPE_TRIAL_PERIOD_DAYS', 7),
     ],
+    'openai' => [
+        'key' => env('OPENAI_KEY'),
+        'urls' => [
+            'base' => 'https://api.openai.com/v1/',
+            'completion' => 'chat/completions',
+            'images' => 'images/generations',
+            'text-to-speech' => 'audio/speech'
+        ],
+        'models' => [
+            'gpt4' => 'gpt-4-1106-preview',
+            'gpt3.5' => 'gpt-3.5-turbo',
+            'dalle' => 'dall-e-3',
+            'tts-1' => 'tts-1'
+        ],
+    ],
 ];

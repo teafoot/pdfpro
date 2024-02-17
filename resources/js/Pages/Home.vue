@@ -21,15 +21,7 @@ defineProps({
 
 <template >
     <HomeLayout>
-        <Seo title="LaraFast" description="Ship Your SaaS Faster with LaraFast">
-            <!-- Twitter Card Tags -->
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:title" content="Ship Faster with Larafast - Laravel Starter Kit">
-            <meta name="twitter:description" content="Boost your startup with Larafast - Laravel Starter Kit - a powerful solution for efficiency, speed, and success in your entrepreneurial journey. Transform your idea into reality in just a matter of days.">
-            <!-- Add your Twitter handle below -->
-            <meta name="twitter:site" content="@yourTwitterHandle">
-            <meta name="twitter:image" content="/images/hero.jpeg">
-        </Seo>
+        <Seo title="LaraFast" description="Ship Your SaaS Faster with LaraFast"/>
         <Hero/>
         <Partners/>
         <ContentWithImage/>

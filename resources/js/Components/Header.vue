@@ -16,12 +16,12 @@
                     <li><a :href="route('blog.index')">Blog</a></li>
                 </ul>
             </div>
-            <a class="btn btn-ghost text-xl">
+            <a href="/" class="flex flex-row items-center justify-center font-bold text-md">
                 <img class="w-16" src="/images/logo.svg" alt="">
-                <span class="flex flex-col items-start">
-                    <span class="leading-5">Laravel</span>
-                    <span class="leading-5">Starter</span>
-                    <span class="leading-5">Kit</span>
+                <span class="ml-2 flex flex-col items-start">
+                    <span class="leading-4">Ship</span>
+                    <span class="leading-4">Fast</span>
+                    <span class="leading-4 text-secondary">with Laravel</span>
                 </span>
             </a>
         </div>
@@ -34,7 +34,7 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <a :href="route('login')" class="btn btn-primary">Get Started</a>
+            <a :href="route('login')" class="btn btn-secondary">Get Started</a>
         </div>
     </div>
 </template>

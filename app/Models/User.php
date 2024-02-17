@@ -7,11 +7,14 @@ use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Panel;
+
+//use Laravel\Cashier\Billable;
+// Uncomment the line below and comment the line above to use LemonSqueezy instead of Stripe
+use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable implements FilamentUser
 {

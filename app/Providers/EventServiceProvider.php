@@ -8,6 +8,7 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Laravel\Cashier\Events\WebhookReceived;
+use LemonSqueezy\Laravel\Events\WebhookHandled;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         WebhookReceived::class => [
             StripeEventListener::class,
+        ],
+        WebhookHandled::class => [
+            LemonSqueezyEventListener::class,
         ],
     ];
 

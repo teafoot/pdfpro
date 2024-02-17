@@ -32,15 +32,15 @@ class Article extends Model
         'active' => 'boolean',
     ];
 
+    protected $appends = ['icon'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    protected function thumbnail(): Attribute
+    public function getIconAttribute(): string
     {
-        return Attribute::make(
-            get: static fn (string $value) => \Storage::url($value)
-        );
+        return \Storage::url($this->attributes['thumbnail']);
     }
 }

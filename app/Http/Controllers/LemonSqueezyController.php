@@ -10,50 +10,50 @@ use Laravel\Cashier\Checkout;
 use Stripe\Exception\ApiErrorException;
 use Symfony\Component\HttpFoundation\Response;
 
-class StripeController extends Controller
+class LemonSqueezyController extends Controller
 {
-    public function subscriptionCheckout(Request $request, $price)
+    /**
+     * @param $variant
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function subscriptionCheckout(Request $request, $product, $variant)
     {
         $user = $request->user();
 
-        if ($user->subscribedToPrice($price)) {
+        if ($user->subscription()?->hasVariant($variant)) {
             return redirect()->back()->dangerBanner("You are already subscribed to that plan");
         }
 
         if ($user->subscribed() && $user->subscription()?->valid()) {
             $user->subscription()
                 ?->load('owner')
-                ->skipTrial()
-                ->swap($price);
+                ->endTrial()
+                ->swap($product, $variant);
 
             // Replace back() with the route where user should be redirected after successful subscription
-            return redirect()->back()->banner('You have successfully subscribed to ' . $price . ' plan');
+            return redirect()->back()->banner('You have successfully subscribed to ' . $variant . ' plan');
         }
 
-        $checkout = $user
-            ->newSubscription('default', $price);
-
-        // If user already used his trial with different plan, new trial will not be allowed for him
-        if (!$user->trialIsUsed()) {
-            $checkout = $checkout->trialDays(config('services.stripe.trial_period_days'));
-        }
-
-        return $checkout
-            ->allowPromotionCodes() // Remove this if you do not allow promo codes
-            ->checkout([
-                'success_url' => route('stripe.success'). '?session_id={CHECKOUT_SESSION_ID}',
-                'cancel_url' => route('dashboard'),
-            ]);
+        return $user->subscribe($variant);
     }
 
-    public function productCheckout(Request $request, $price)
+    /**
+     * @param $price
+     * @return Checkout
+     */
+    public function productCheckout($price)
     {
-        return $request->user()->checkout($price, [
+        $user = Auth::user();
+
+        return $user->checkout($price, [
             'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('dashboard'),
         ]);
     }
 
+    /**
+     * @throws ApiErrorException
+     */
     public function success(Request $request)
     {
         $sessionId = $request->get('session_id');

@@ -16,6 +16,8 @@ const plans = [
             'Feature 4',
             'Feature 5',
         ],
+        product: 1,
+        variant: 1,
     },
     {
         name: 'Starter',
@@ -29,6 +31,8 @@ const plans = [
             'Feature 7',
             'Feature 8',
         ],
+        product: 193449, // for lemonsqueezy only
+        variant: 255829, // for lemonsqueezy only
     },
     {
         name: 'Pro',
@@ -42,6 +46,8 @@ const plans = [
             'Feature 10',
             'Feature 11',
         ],
+        product: 193449, // for lemonsqueezy only
+        variant: 255829, // for lemonsqueezy only
     },
 ];
 </script>
@@ -63,7 +69,7 @@ const plans = [
                     <span class="text-4xl font-extrabold">${{ plan.price }}</span>
                     <span v-if="plan.price !== '0'" class="text-base font-medium">/{{ plan.interval }}</span>
                 </p>
-                <a :href="$page.props.auth.user ? route('stripe.subscription.checkout', {price: plan.slug}) : route('register')"
+                <a :href="$page.props.auth.user ? route('lemonsqueezy.subscription.checkout', {product: plan.product, variant: plan.variant}) : route('register')"
                    class="mb-6 btn btn-primary btn-wide text-center mx-auto flex">
                     Choose Plan
                 </a>
