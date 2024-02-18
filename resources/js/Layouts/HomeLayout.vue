@@ -4,9 +4,12 @@ import Header from "@/Components/Header.vue";
 import Copyright from "@/Components/Copyright.vue";
 import Footer from "@/Components/Footer.vue";
 import Seo from "@/Components/Seo.vue";
+import Banner from "@/Components/Profile/Banner.vue";
 </script>
 
 <template>
+    <Banner />
+
     <Seo title="My app" description="his is the default description">
         <!-- Twitter Card Tags -->
         <meta name="twitter:card" content="summary_large_image">

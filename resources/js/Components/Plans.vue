@@ -16,12 +16,12 @@ const plans = [
             'Feature 4',
             'Feature 5',
         ],
-        product: 1,
-        variant: 1,
+        productId: 1,
+        variantId: 1,
     },
     {
         name: 'Starter',
-        slug: 'starter',
+        slug: 'starter', // used by stripe, should be your stripe price id
         description: 'Individuals or small businesses with moderate social media needs.',
         price: '9.99',
         interval: 'month',
@@ -31,12 +31,12 @@ const plans = [
             'Feature 7',
             'Feature 8',
         ],
-        product: 193449, // for lemonsqueezy only
-        variant: 255829, // for lemonsqueezy only
+        productId: 193449, // for lemonsqueezy only
+        variantId: 255829, // for lemonsqueezy only
     },
     {
         name: 'Pro',
-        slug: 'pro',
+        slug: 'pro', // used by stripe, should be your stripe price id
         description: 'Professional bloggers, influencers, or mid-sized businesses.',
         price: '19.99',
         interval: 'month',
@@ -46,8 +46,8 @@ const plans = [
             'Feature 10',
             'Feature 11',
         ],
-        product: 193449, // for lemonsqueezy only
-        variant: 255829, // for lemonsqueezy only
+        productId: 193449, // for lemonsqueezy only
+        variantId: 255829, // for lemonsqueezy only
     },
 ];
 </script>
@@ -69,7 +69,7 @@ const plans = [
                     <span class="text-4xl font-extrabold">${{ plan.price }}</span>
                     <span v-if="plan.price !== '0'" class="text-base font-medium">/{{ plan.interval }}</span>
                 </p>
-                <a :href="$page.props.auth.user ? route('lemonsqueezy.subscription.checkout', {product: plan.product, variant: plan.variant}) : route('register')"
+                <a :href="$page.props.auth.user ? route('lemonsqueezy.subscription.checkout', {productId: plan.productId, variantId: plan.variantId}) : route('register')"
                    class="mb-6 btn btn-primary btn-wide text-center mx-auto flex">
                     Choose Plan
                 </a>

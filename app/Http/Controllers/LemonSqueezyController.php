@@ -12,10 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LemonSqueezyController extends Controller
 {
-    /**
-     * @param $variant
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function subscriptionCheckout(Request $request, $product, $variant)
     {
         $user = $request->user();
@@ -37,53 +33,15 @@ class LemonSqueezyController extends Controller
         return $user->subscribe($variant);
     }
 
-    /**
-     * @param $price
-     * @return Checkout
-     */
-    public function productCheckout($price)
+    public function productCheckout(Request $request, $variantId): \LemonSqueezy\Laravel\Checkout
     {
-        $user = Auth::user();
-
-        return $user->checkout($price, [
-            'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('dashboard'),
-        ]);
+        return $request->user()->checkout($variantId)
+            ->redirectTo(url('/'));
     }
 
-    /**
-     * @throws ApiErrorException
-     */
-    public function success(Request $request)
+    public function billing(Request $request): Response
     {
-        $sessionId = $request->get('session_id');
-
-        try {
-            Cashier::stripe()->checkout->sessions->retrieve($sessionId);
-        } catch (\Exception $exception) {
-            return redirect()->route('dashboard')->dangerBanner('Something went wrong');
-        }
-
-        $request->user()->update(['trial_is_used' => true]);
-
-        return redirect()->route('dashboard')->banner("You have successfully subscribed");
-    }
-
-    /**
-     * @return mixed
-     */
-    public function error()
-    {
-        return redirect()->route('stripe.plans')->dangerBanner("Something Went Wrong");
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     */
-    public function billing(Request $request)
-    {
-        $url = $request->user()->billingPortalUrl(route('dashboard'));
+        $url = $request->user()->customerPortalUrl();
 
         return Inertia::location($url);
     }
