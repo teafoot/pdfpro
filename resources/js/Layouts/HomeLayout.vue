@@ -10,7 +10,7 @@ import Banner from "@/Components/Profile/Banner.vue";
 <template>
     <Banner />
 
-    <Seo title="My app" description="his is the default description">
+    <Seo title="My app" description="This is the default description">
         <!-- Twitter Card Tags -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Ship Faster with Larafast - Laravel Starter Kit">
