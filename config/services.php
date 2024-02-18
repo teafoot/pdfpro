@@ -36,6 +36,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'trial_period_days' => env('STRIPE_TRIAL_PERIOD_DAYS', 7),
     ],
+    'lemonsqueezy' => [
+        'base_url' => 'https://api.lemonsqueezy.com/v1',
+        'key' => env('LEMON_SQUEEZY_API_KEY'),
+        'store' => env('LEMON_SQUEEZY_STORE')
+    ],
     'openai' => [
         'key' => env('OPENAI_KEY'),
         'urls' => [
