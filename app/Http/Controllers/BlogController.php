@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Services\SchemaOrg;
 use Inertia\Inertia;
 
 class BlogController extends Controller
@@ -20,6 +21,10 @@ class BlogController extends Controller
 
     public function article(Article $article): \Inertia\Response
     {
-        return Inertia::render('Article', ['article' => $article]);
+        abort_if(!$article->active, 404);
+
+        \View::share(['schema' => ['article' => app(SchemaOrg::class)->article($article->load('user'))]]);
+
+        return Inertia::render('Article', ['article' => $article->load('user')]);
     }
 }

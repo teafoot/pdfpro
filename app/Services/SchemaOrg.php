@@ -9,31 +9,29 @@ use Spatie\SchemaOrg\Schema;
 
 class SchemaOrg
 {
-    public function article(): ?string
+    public function article($article): ?string
     {
         try {
-            $page = $this->params->get('article');
-            $webPage = Schema::webPage()->url($page['permalink']);
+            $webPage = Schema::webPage()->url(route('blog.article', $article));
             $organization = Schema::organization()
                 ->name(config('app.name'));
 
-            $article = Schema::article()
-                ->name($page['title'])
-                ->if(!empty($page['author']), function (Article $article) use ($page) {
+            $articleSchema = Schema::article()
+                ->name($article->seo_title ?? $article->title)
+                ->if($article->user, function (Article $schemaArticle) use ($article) {
                     $author = Schema::person()
-                        ->name($page['author'][0]['name'])
-                        ->jobTitle($page['author'][0]['description']);
+                        ->name($article->user->name);
 
-                    return $article->author($author);
+                    return $schemaArticle->author($author);
                 })
-                ->if(isset($page['cover_image']), fn(Article $article) => $article->image(asset($page['cover_image'])))
-                ->url($page['permalink'])
-                ->headline($page['title'])
-                ->datePublished($page['updated_at'])
+                ->image($article->icon)
+                ->url(route('blog.article', $article))
+                ->headline($article->seo_title ?? $article->title)
+                ->datePublished($article->created_at)
                 ->mainEntityOfPage($webPage)
                 ->publisher($organization);
 
-            return $article->toScript();
+            return $articleSchema->toScript();
         } catch (Exception $e) {
             Log::error($e);
 
@@ -61,17 +59,12 @@ class SchemaOrg
                 ->availableLanguage(__('schema.organization.contact_point.available_language'))
                 ->email(__('schema.organization.contact_point.email'));
 
-            $offers = [
-                Schema::offer()->itemOffered(Schema::service()->name('Professional Laravel Developers')),
-                Schema::offer()->itemOffered(Schema::service()->name('Software Development')),
-                Schema::offer()->itemOffered(Schema::service()->name('IT Business Consulting')),
-                Schema::offer()->itemOffered(Schema::service()->name('IT Outsourcing/Outstaffing')),
-                Schema::offer()->itemOffered(Schema::service()->name('UI/UX Design')),
-                Schema::offer()->itemOffered(Schema::service()->name('Custom Software Development')),
-            ];
+            $offers = array_map(static function ($offer) {
+                return Schema::offer()->itemOffered(Schema::service()->name($offer));
+            }, __('schema.organization.offerCatalog.itemListElement'));
 
             $offerCatalog = Schema::offerCatalog()
-                ->name('Software Development Services')
+                ->name(__('schema.organization.offerCatalog.name'))
                 ->itemListElement($offers);
 
             $localBusiness = Schema::onlineBusiness()
@@ -94,34 +87,30 @@ class SchemaOrg
         }
     }
 
-    public function reviews(): array
+    public function reviews($reviews): array
     {
         try {
-            $home = Entry::whereCollection('pages')->filter(fn($page) => $page->slug === 'home')->first();
-            $reviewList = collect($home->sections)->filter(fn($section) => $section->type === 'reviews')->first()->review_list;
-            $reviewsSchema = [];
-
-            foreach ($reviewList as $reviewData) {
+            foreach ($reviews as $review) {
                 $reviewSchema = Schema::review()
                     ->itemReviewed(Schema::onlineBusiness()
-                        ->name('Lionix')
-                        ->url('https://lionix.io'))
+                        ->name('Organization')
+                        ->url('https://example.com'))
                     ->author(Schema::person()
-                        ->name($reviewData['name']))
+                        ->name('Reviewer Name'))
                     ->reviewRating(Schema::rating()
                         ->ratingValue(5)
                         ->bestRating(5))
-                    ->reviewBody($reviewData['review'])
+                    ->reviewBody('Review text')
                     ->datePublished(now());
 
                 // Add each review schema to the reviews array
-                $reviewsSchema[] = $reviewSchema;
+                $reviews[] = $reviewSchema;
             }
 
             // Convert the array of review schemas into JSON-LD scripts
             return array_map(static function ($schema) {
                 return $schema->toScript();
-            }, $reviewsSchema);
+            }, $reviews);
         } catch (Exception $e) {
             Log::error($e);
 

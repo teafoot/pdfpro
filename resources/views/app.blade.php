@@ -28,5 +28,7 @@
     </head>
     <body class="antialiased">
         @inertia
+
+        @include('schema')
     </body>
 </html>
