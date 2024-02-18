@@ -20,8 +20,8 @@
         </nav>
         <nav>
             <h6 class="footer-title">Legal</h6>
-            <a class="link link-hover">Terms of use</a>
-            <a class="link link-hover">Privacy policy</a>
+            <a :href="route('terms.show')" class="link link-hover">Terms of use</a>
+            <a :href="route('policy.show')" class="link link-hover">Privacy policy</a>
             <a class="link link-hover">Cookie policy</a>
         </nav>
         <form>
@@ -32,7 +32,7 @@
                 </label>
                 <div class="join">
                     <input type="text" placeholder="username@site.com" class="input input-bordered join-item" />
-                    <button class="btn btn-primary join-item">Subscribe</button>
+                    <button class="btn btn-secondary join-item">Subscribe</button>
                 </div>
             </fieldset>
         </form>

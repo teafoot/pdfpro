@@ -11,6 +11,7 @@ import Faq from "@/Components/Faq.vue";
 import CTA from "@/Components/CTA.vue";
 import Seo from "@/Components/Seo.vue";
 import HomeLayout from "@/Layouts/HomeLayout.vue";
+import ComingSoon from "@/Components/ComingSoon.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -20,8 +21,10 @@ defineProps({
 </script>
 
 <template >
+    <ComingSoon/>
     <HomeLayout>
         <Seo title="LaraFast" description="Ship Your SaaS Faster with LaraFast"/>
+
         <Hero/>
         <Partners/>
         <ContentWithImage/>

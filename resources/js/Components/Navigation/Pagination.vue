@@ -1,13 +1,13 @@
 <script setup>
-
+defineProps({
+    pages: Array,
+    activePage: Number
+})
 </script>
 
 <template>
     <div class="join">
-        <button class="join-item btn">1</button>
-        <button class="join-item btn btn-active">2</button>
-        <button class="join-item btn">3</button>
-        <button class="join-item btn">4</button>
+        <button v-for="page in pages" class="join-item btn" :class="{'btn-active': page === activePage}">{{ page }}</button>
     </div>
 </template>
 

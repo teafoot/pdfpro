@@ -53,7 +53,7 @@ const plans = [
 </script>
 
 <template>
-    <div class="py-8 sm:py-16 px-8">
+    <div id="pricing" class="py-8 sm:py-16 px-8">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:text-center">
                 <p class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Choose Your Plan</p>
@@ -70,7 +70,7 @@ const plans = [
                     <span v-if="plan.price !== '0'" class="text-base font-medium">/{{ plan.interval }}</span>
                 </p>
                 <a :href="$page.props.auth.user ? route('lemonsqueezy.subscription.checkout', {productId: plan.productId, variantId: plan.variantId}) : route('register')"
-                   class="mb-6 btn btn-primary btn-wide text-center mx-auto flex">
+                   class="mb-6 btn btn-secondary btn-wide text-center mx-auto flex">
                     Choose Plan
                 </a>
                 <p class="text-sm mb-4">*7 Days Free Trial</p>
