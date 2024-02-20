@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LemonSqueezyController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StripeController;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Foundation\Application;
@@ -21,6 +22,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('sitemap', [SitemapController::class, 'index'])->name('sitemap');
+
+Route::get('/auth/redirect/{driver}', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get('/auth/callback/{driver}', [SocialiteController::class, 'callback'])->name('socialite.callback');
+
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{article:slug}', [BlogController::class, 'article'])->name('blog.article');
 
@@ -29,6 +35,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    // Here goes your auth user endpoints
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
