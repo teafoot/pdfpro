@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use LemonSqueezy\Laravel\Events\WebhookHandled;
 
 class LemonSqueezyEventListener
