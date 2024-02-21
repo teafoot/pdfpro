@@ -1,11 +1,7 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
-import Header from '@/Components/Header.vue';
 import Hero from "@/Components/Hero.vue";
 import Partners from "@/Components/Partners.vue";
 import ContentWithImage from "@/Components/ContentWithImage.vue";
-import Footer from "@/Components/Footer.vue";
-import Copyright from "@/Components/Copyright.vue";
 import Plans from "@/Components/Plans.vue";
 import Faq from "@/Components/Faq.vue";
 import CTA from "@/Components/CTA.vue";
