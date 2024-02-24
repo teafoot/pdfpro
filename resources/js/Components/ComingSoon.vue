@@ -21,7 +21,7 @@
                             <label class="label mb-4">
                                 <span class="label-text text-xl">Add your email to be notified once <span class="text-secondary">Laravel Starter Kit</span> is ready</span>
                             </label>
-                            <input type="text" placeholder="Email">
+                            <input class="rounded mb-2 border-base-300" type="text" placeholder="Email">
                             <button class="btn btn-secondary">Subscribe</button>
                         </div>
                     </form>
