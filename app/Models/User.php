@@ -12,9 +12,8 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Panel;
 
-//use Laravel\Cashier\Billable;
-// Uncomment the line below and comment the line above to use LemonSqueezy instead of Stripe
-use LemonSqueezy\Laravel\Billable;
+use Laravel\Cashier\Billable; // Use this for Stripe
+//use LemonSqueezy\Laravel\Billable; // Use this for LemonSqueezy
 
 class User extends Authenticatable implements FilamentUser
 {

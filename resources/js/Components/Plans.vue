@@ -16,8 +16,8 @@ const plans = [
             'Feature 4',
             'Feature 5',
         ],
-        productId: 1,
-        variantId: 1,
+        // productId: 1,
+        // variantId: 1,
     },
     {
         name: 'Starter',
@@ -31,8 +31,8 @@ const plans = [
             'Feature 7',
             'Feature 8',
         ],
-        productId: 193449, // for lemonsqueezy only
-        variantId: 255829, // for lemonsqueezy only
+        // productId: 193449, // for lemonsqueezy only
+        // variantId: 255829, // for lemonsqueezy only
     },
     {
         name: 'Pro',
@@ -46,8 +46,8 @@ const plans = [
             'Feature 10',
             'Feature 11',
         ],
-        productId: 193449, // for lemonsqueezy only
-        variantId: 255829, // for lemonsqueezy only
+        // productId: 193449, // for lemonsqueezy only
+        // variantId: 255829, // for lemonsqueezy only
     },
 ];
 </script>
@@ -69,7 +69,7 @@ const plans = [
                     <span class="text-4xl font-extrabold">${{ plan.price }}</span>
                     <span v-if="plan.price !== '0'" class="text-base font-medium">/{{ plan.interval }}</span>
                 </p>
-                <a :href="$page.props.auth.user ? route('lemonsqueezy.subscription.checkout', {productId: plan.productId, variantId: plan.variantId}) : route('register')"
+                <a :href="$page.props.auth.user ? route('stripe.subscription.checkout', {productId: plan.productId, variantId: plan.variantId}) : route('register')"
                    class="mb-6 btn btn-secondary btn-wide text-center mx-auto flex">
                     Choose Plan
                 </a>
