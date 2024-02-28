@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Services\OpenAIService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 

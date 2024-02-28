@@ -15,6 +15,6 @@ class LemonSqueezyService
 
     public function products()
     {
-        return $this->client->get('products?filter[store_id]=' . config('services.lemonsqueezy.store'))->json();
+        return $this->client->get('products?filter[store_id]='.config('services.lemonsqueezy.store'))->json();
     }
 }

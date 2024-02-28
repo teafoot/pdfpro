@@ -17,7 +17,6 @@ defineProps({
 
 <template >
     <HomeLayout>
-        <Seo title="LaraFast" description="Ship Your SaaS Faster with LaraFast"/>
         <Hero/>
         <Partners/>
         <ContentWithImage/>

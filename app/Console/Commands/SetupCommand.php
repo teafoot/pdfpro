@@ -3,9 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use function Laravel\Prompts\select;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
+use function Laravel\Prompts\select;
 
 class SetupCommand extends Command
 {
@@ -44,7 +45,7 @@ class SetupCommand extends Command
         $verification = confirm(
             label: 'Do you want to install Email Verification support?',
             default: 0,
-            hint: "Requires email client setup. Can be enabled later from config/jetstream.php file."
+            hint: 'Requires email client setup. Can be enabled later from config/jetstream.php file.'
         );
 
         $this->call('jetstream:install', [
@@ -53,7 +54,7 @@ class SetupCommand extends Command
             '--verification' => $verification,
         ]);
 
-        info('ShipFast Installed Successfully');
+        info('LaraFast Installed Successfully');
         info('Now run:');
         info('npm install');
         info('npm run build');

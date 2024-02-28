@@ -37,7 +37,6 @@ class CreateStripeSinglePaymentProducts extends Command
     /**
      * Execute the console command.
      *
-     * @return int
      * @throws JsonException
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -50,10 +49,10 @@ class CreateStripeSinglePaymentProducts extends Command
         foreach ($data['products'] as $item) {
             try {
                 $product = $stripe->products->create($item);
-                $this->info('Created Product: ' . $product['name']);
+                $this->info('Created Product: '.$product['name']);
             } catch (Exception $e) {
                 $product = $stripe->products->update($item['id'], Arr::except($item, ['id']));
-                $this->info('Updated Product: ' . $product['name']);
+                $this->info('Updated Product: '.$product['name']);
             }
 
             try {
@@ -65,10 +64,10 @@ class CreateStripeSinglePaymentProducts extends Command
                         $price = $stripe->prices->create($priceItem);
                         $prices[] = $price['id'];
 
-                        $this->info('Created Price: ' . $price['id']);
+                        $this->info('Created Price: '.$price['id']);
 
                     }
-                    $this->info('Updating Product Default Price: ' . $prices[0]);
+                    $this->info('Updating Product Default Price: '.$prices[0]);
                     $stripe->products->update($product['id'], ['default_price' => $prices[0]]);
 
                     return 0;
@@ -78,7 +77,7 @@ class CreateStripeSinglePaymentProducts extends Command
                     $priceItem = collect($data['prices'])->firstWhere(fn ($item) => $item['metadata']['points'] === $price['metadata']['points']);
                     $price = $stripe->prices->update($price['id'], Arr::only(['metadata', 'nickname'], $priceItem));
 
-                    $this->info('Updated Price: ' . $price['id']);
+                    $this->info('Updated Price: '.$price['id']);
                 }
             } catch (Exception $e) {
                 $this->error($e->getMessage());

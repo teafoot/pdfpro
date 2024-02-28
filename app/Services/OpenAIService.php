@@ -17,22 +17,22 @@ class OpenAIService
     {
         return $this->client->post(config('services.openai.urls.completion'),
             [
-                "model" => $model,
-                "messages" => [
+                'model' => $model,
+                'messages' => [
                     [
-                        "role" => "system",
-                        "content" => "You are an amazing social media content creator",
+                        'role' => 'system',
+                        'content' => 'You are an amazing social media content creator',
                     ],
                     [
-                        "role" => "user",
-                        "content" => $prompt,
+                        'role' => 'user',
+                        'content' => $prompt,
                     ],
                 ],
-                "temperature" => 0.5,
-                "max_tokens" => 1000,
-                "top_p" => 0.5,
-                "frequency_penalty" => 0.5,
-                "presence_penalty" => 0.5,
+                'temperature' => 0.5,
+                'max_tokens' => 1000,
+                'top_p' => 0.5,
+                'frequency_penalty' => 0.5,
+                'presence_penalty' => 0.5,
             ])->json();
     }
 
@@ -40,9 +40,9 @@ class OpenAIService
     {
         return $this->client->post(config('services.openai.urls.text-to-speech'),
             [
-                "model" => config('services.openai.models.tts-1'),
-                "input" => $text,
-                "voice" => "alloy",
+                'model' => config('services.openai.models.tts-1'),
+                'input' => $text,
+                'voice' => 'alloy',
             ]);
     }
 
@@ -50,9 +50,9 @@ class OpenAIService
     {
         return $this->client->post(config('services.openai.urls.images'),
             [
-                "prompt" => $prompt,
-                "n" => 1,
-                "size" => "512x512",
+                'prompt' => $prompt,
+                'n' => 1,
+                'size' => '512x512',
             ])->json();
     }
 }

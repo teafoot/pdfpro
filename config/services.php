@@ -41,7 +41,7 @@ return [
     'lemonsqueezy' => [
         'base_url' => 'https://api.lemonsqueezy.com/v1',
         'key' => env('LEMON_SQUEEZY_API_KEY'),
-        'store' => env('LEMON_SQUEEZY_STORE')
+        'store' => env('LEMON_SQUEEZY_STORE'),
     ],
 
     'openai' => [
@@ -50,13 +50,13 @@ return [
             'base' => 'https://api.openai.com/v1/',
             'completion' => 'chat/completions',
             'images' => 'images/generations',
-            'text-to-speech' => 'audio/speech'
+            'text-to-speech' => 'audio/speech',
         ],
         'models' => [
             'gpt4' => 'gpt-4-1106-preview',
             'gpt3.5' => 'gpt-3.5-turbo',
             'dalle' => 'dall-e-3',
-            'tts-1' => 'tts-1'
+            'tts-1' => 'tts-1',
         ],
     ],
 ];

@@ -1,5 +1,6 @@
 <script setup>
 
+import {Head} from '@inertiajs/vue3';
 import Header from "@/Components/Header.vue";
 import Copyright from "@/Components/Copyright.vue";
 import Footer from "@/Components/Footer.vue";
@@ -10,15 +11,16 @@ import Banner from "@/Components/Profile/Banner.vue";
 <template>
     <Banner />
 
-    <Seo title="My app" description="This is the default description">
+    <Head title="Your default title goes here">
+        <meta head-key="description" name="description" content="Your default description goes here">
+        <meta head-key="keywords" name="keywords" content="Your default keywords goes here">
         <!-- Twitter Card Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Ship Faster with Larafast - Laravel Starter Kit">
-        <meta name="twitter:description" content="Boost your startup with Larafast - Laravel Starter Kit - a powerful solution for efficiency, speed, and success in your entrepreneurial journey. Transform your idea into reality in just a matter of days.">
-        <!-- Add your Twitter handle below -->
-        <meta name="twitter:site" content="@yourTwitterHandle">
-        <meta name="twitter:image" content="/images/hero.jpeg">
-    </Seo>
+        <meta head-key="twitter:card" name="twitter:card" content="twitterimage.png">
+        <meta head-key="twitter:title"  name="twitter:title" content="Your default title goes here">
+        <meta head-key="twitter:description" name="twitter:description" content="Your default description goes here">
+        <meta head-key="twitter:image" name="twitter:image" content="twitterimage.png">
+        <meta head-key="twitter:site" name="twitter:site" content="@yourtwitterhandle">
+    </Head>
     <Header/>
     <!--    Page Content -->
     <div class="mx-auto max-w-7xl px-6 lg:px-8">

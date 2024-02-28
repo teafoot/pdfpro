@@ -5,11 +5,9 @@ namespace App\Console\Commands\Stripe;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use JsonException;
 use Laravel\Cashier\Cashier;
 use Stripe\Exception\ApiErrorException;
-use Stripe\StripeClient;
 
 class CreateStripeProductsAndPrices extends Command
 {
@@ -40,7 +38,6 @@ class CreateStripeProductsAndPrices extends Command
     /**
      * Execute the console command.
      *
-     * @return int
      * @throws JsonException
      * @throws ApiErrorException
      */
@@ -54,10 +51,10 @@ class CreateStripeProductsAndPrices extends Command
             try {
                 $stripe->products->create($product);
                 // You can save your created product in the database to show in plans section
-                $this->info('Created Product: ' . $product['name']);
+                $this->info('Created Product: '.$product['name']);
             } catch (Exception $e) {
                 $stripe->products->update($product['id'], Arr::except($product, ['id']));
-                $this->info('Updated Product: ' . $product['name']);
+                $this->info('Updated Product: '.$product['name']);
             }
         }
 
@@ -67,13 +64,13 @@ class CreateStripeProductsAndPrices extends Command
             try {
                 $stripe->plans->create($price);
                 // You can save your created prices in the database to show in plans section
-                $this->info('Created Price: ' . $price['id']);
+                $this->info('Created Price: '.$price['id']);
             } catch (Exception $e) {
                 $stripe->plans->update($price['id'], Arr::only($price, ['metadata', 'nickname']));
-                $this->info('Updated Price: ' . $price['id']);
+                $this->info('Updated Price: '.$price['id']);
             }
 
-            $this->info('Updating Product Default Price: ' . $price['id']);
+            $this->info('Updating Product Default Price: '.$price['id']);
             $stripe->products->update($price['product'], ['default_price' => $price['id']]);
         }
 

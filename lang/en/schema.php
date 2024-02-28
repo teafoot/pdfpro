@@ -44,7 +44,7 @@ return [
                 'IT Outsourcing/Outstaffing',
                 'UI/UX Design',
                 'Custom Software Development',
-            ]
-        ]
+            ],
+        ],
     ],
 ];

@@ -6,7 +6,6 @@ use App\Services\SchemaOrg;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::unguard();
 
-//        View::share(['schema' => ['organization' => app(SchemaOrg::class)->organization()]]);
+        //        View::share(['schema' => ['organization' => app(SchemaOrg::class)->organization()]]);
     }
 }

@@ -21,7 +21,7 @@ class BlogController extends Controller
 
     public function article(Article $article): \Inertia\Response
     {
-        abort_if(!$article->active, 404);
+        abort_if(! $article->active, 404);
 
         \View::share(['schema' => ['article' => app(SchemaOrg::class)->article($article->load('user'))]]);
 

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="canonical" href="{{ request()->url() }}">
 
         <!--Favicon-->
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">

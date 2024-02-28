@@ -129,7 +129,7 @@ return [
 
         'sentry' => [
             'driver' => 'sentry',
-            'level'  => 'error',
+            'level' => 'error',
         ],
     ],
 
