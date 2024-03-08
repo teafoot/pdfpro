@@ -15,7 +15,7 @@ import Banner from "@/Components/Profile/Banner.vue";
         <meta head-key="description" name="description" content="Your default description goes here">
         <meta head-key="keywords" name="keywords" content="Your default keywords goes here">
         <!-- Twitter Card Tags -->
-        <meta head-key="twitter:card" name="twitter:card" content="twitterimage.png">
+        <meta head-key="twitter:card" name="twitter:card" content="summary_large_image">
         <meta head-key="twitter:title"  name="twitter:title" content="Your default title goes here">
         <meta head-key="twitter:description" name="twitter:description" content="Your default description goes here">
         <meta head-key="twitter:image" name="twitter:image" content="twitterimage.png">
