@@ -20,6 +20,10 @@ import Banner from "@/Components/Profile/Banner.vue";
         <meta head-key="twitter:description" name="twitter:description" content="Your default description goes here">
         <meta head-key="twitter:image" name="twitter:image" content="twitterimage.png">
         <meta head-key="twitter:site" name="twitter:site" content="@yourtwitterhandle">
+        <!-- OG-->
+        <meta head-key="og:title"  name="og:title" content="Your default title goes here">
+        <meta head-key="og:description" name="og:description" content="Your default description goes here">
+        <meta name="og:image" content="twitterimage.png">
     </Head>
     <Header/>
     <!--    Page Content -->
