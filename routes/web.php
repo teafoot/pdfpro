@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LemonSqueezyController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\StripeController;
 use App\Http\Middleware\Subscribed;
 use Illuminate\Foundation\Application;
