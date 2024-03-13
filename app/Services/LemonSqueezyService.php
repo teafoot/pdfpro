@@ -35,27 +35,27 @@ class LemonSqueezyService
 
     public function store($id)
     {
-        return $this->client->get('stores/' . $id)->json();
+        return $this->client->get('stores/'.$id)->json();
     }
 
     public function products()
     {
-        return $this->client->get('products?filter[store_id]=' . $this->store)->json();
+        return $this->client->get('products?filter[store_id]='.$this->store)->json();
     }
 
     public function product($productId)
     {
-        return $this->client->get('products/' . $productId)->json();
+        return $this->client->get('products/'.$productId)->json();
     }
 
     public function variants($productId)
     {
-        return $this->client->get('variants?filter[product_id]=' . $productId)->json();
+        return $this->client->get('variants?filter[product_id]='.$productId)->json();
     }
 
     public function variant($variantId)
     {
-        return $this->client->get('variants/' . $variantId)->json();
+        return $this->client->get('variants/'.$variantId)->json();
     }
 
     public function checkout($variant)
@@ -65,7 +65,7 @@ class LemonSqueezyService
                 'type' => 'checkouts',
                 'attributes' => [
                     'product_options' => array_filter([
-                        'enabled_variants' => [(string)$variant]
+                        'enabled_variants' => [(string) $variant],
                     ]),
                     'expires_at' => null,
                 ],
@@ -79,7 +79,7 @@ class LemonSqueezyService
                     'variant' => [
                         'data' => [
                             'type' => 'variants',
-                            'id' => (string)$variant,
+                            'id' => (string) $variant,
                         ],
                     ],
                 ],
