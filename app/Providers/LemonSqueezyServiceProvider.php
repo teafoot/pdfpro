@@ -30,7 +30,7 @@ class LemonSqueezyServiceProvider extends ServiceProvider
                 ->timeout(3600)
                 ->withToken(config('services.lemonsqueezy.key'));
 
-            return new \App\Services\LemonSqueezyService($client);
+            return new \App\Services\LemonSqueezyService($client, config('services.lemonsqueezy.store'));
         });
     }
 }
