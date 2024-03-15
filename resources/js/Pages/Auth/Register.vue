@@ -7,6 +7,7 @@ import InputError from '@/Components/Profile/InputError.vue';
 import InputLabel from '@/Components/Profile/InputLabel.vue';
 import PrimaryButton from '@/Components/Profile/PrimaryButton.vue';
 import TextInput from '@/Components/Profile/TextInput.vue';
+import SocialButtons from "@/Components/Social/SocialButtons.vue";
 
 const form = useForm({
     name: '',
@@ -30,7 +31,8 @@ const submit = () => {
         <template #logo>
             <AuthenticationCardLogo />
         </template>
-
+        <SocialButtons/>
+        <div class="divider">or</div>
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
