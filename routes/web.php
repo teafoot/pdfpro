@@ -25,8 +25,10 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('sitemap', [SitemapController::class, 'index'])->name('sitemap');
 
-Route::get('/auth/redirect/{driver}', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
-Route::get('/auth/callback/{driver}', [SocialiteController::class, 'callback'])->name('socialite.callback');
+Route::get('/auth/redirect/{driver}', [SocialiteController::class, 'redirect'])
+    ->name('socialite.redirect');
+Route::get('/auth/callback/{driver}', [SocialiteController::class, 'callback'])
+    ->name('socialite.callback');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{article:slug}', [BlogController::class, 'article'])->name('blog.article');

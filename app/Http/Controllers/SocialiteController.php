@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
@@ -25,5 +29,20 @@ class SocialiteController extends Controller
         //            'token' => $userData->token,
         //            'token_secret' => $userData->tokenSecret ?? $userData->refreshToken,
         //        ];
+
+        // For twitter login make sure to enable "Request email from users" option in "User authentication settings"
+        $user = User::firstOrCreate(['email' => $userData->getEmail()], [
+            'name' => $userData->getName(),
+            'password' => Hash::make(Str::random()),
+        ]);
+
+        $user->socialAccounts()->firstOrCreate(['account_id' => $userData->getId()], [
+            'provider' => $driver,
+            'token' => $userData->token,
+        ]);
+
+        \Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }
