@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Laravel\Cashier\Cashier;
+use Laravel\Cashier\Checkout;
 use Symfony\Component\HttpFoundation\Response;
 
 class StripeController extends Controller
@@ -43,7 +45,7 @@ class StripeController extends Controller
             ]);
     }
 
-    public function productCheckout(Request $request, $price)
+    public function productCheckout(Request $request, $price): Checkout
     {
         return $request->user()->checkout($price, [
             'success_url' => route('stripe.success').'?session_id={CHECKOUT_SESSION_ID}',
@@ -51,7 +53,7 @@ class StripeController extends Controller
         ]);
     }
 
-    public function success(Request $request)
+    public function success(Request $request): RedirectResponse
     {
         $sessionId = $request->get('session_id');
 
@@ -66,18 +68,12 @@ class StripeController extends Controller
         return redirect()->route('dashboard')->banner('You have successfully subscribed');
     }
 
-    /**
-     * @return mixed
-     */
-    public function error()
+    public function error(): RedirectResponse
     {
         return redirect()->route('stripe.plans')->dangerBanner('Something Went Wrong');
     }
 
-    /**
-     * @return Response
-     */
-    public function billing(Request $request)
+    public function billing(Request $request): Response
     {
         $url = $request->user()->billingPortalUrl(route('dashboard'));
 

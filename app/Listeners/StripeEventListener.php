@@ -22,9 +22,9 @@ class StripeEventListener
     {
         if ($event->payload['type'] === 'customer.subscription.created' || $event->payload['type'] === 'customer.subscription.updated') {
             $stripeId = $event->payload['data']['object']['customer'];
-            $product = $event->payload['data']['object']['plan']['product'];
+            // $product = $event->payload['data']['object']['plan']['product'];
 
-            $user = User::where('stripe_id', $stripeId)->firstOrFail();
+            // $user = User::where('stripe_id', $stripeId)->firstOrFail();
 
             // Write your logic here
         }

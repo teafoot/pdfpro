@@ -20,7 +20,7 @@ class LemonSqueezyEventListener
     public function handle(WebhookHandled $event): void
     {
         if ($event->payload['meta']['event_name'] === 'subscription_updated') {
-            // Handle the incoming event...
+            $eventName = $event->payload['meta']['event_name'];
         }
     }
 }

@@ -16,7 +16,7 @@ class GenerateSitemap extends Command
 
     protected $description = 'Generate sitemap';
 
-    public function handle()
+    public function handle(): void
     {
         $url = config('app.url');
 

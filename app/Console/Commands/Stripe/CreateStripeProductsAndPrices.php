@@ -26,16 +26,6 @@ class CreateStripeProductsAndPrices extends Command
     protected $description = 'Create Stripe Products and Prices from Json File /stubs/stripe/prices.json';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @throws JsonException

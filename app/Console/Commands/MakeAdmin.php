@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Filament\Commands\MakeUserCommand;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,7 +29,7 @@ class MakeAdmin extends MakeUserCommand
                 required: true,
                 validate: fn (string $email): ?string => match (true) {
                     ! filter_var($email, FILTER_VALIDATE_EMAIL) => 'The email address must be valid.',
-                    static::getUserModel()::where('email', $email)->exists() => 'A user with this email address already exists',
+                    User::where('email', $email)->exists() => 'A user with this email address already exists',
                     default => null,
                 },
             ),

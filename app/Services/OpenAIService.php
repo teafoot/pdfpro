@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 
 class OpenAIService
 {
@@ -36,7 +38,7 @@ class OpenAIService
             ])->json();
     }
 
-    public function textToSpeech($text): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
+    public function textToSpeech($text): PromiseInterface|Response
     {
         return $this->client->post(config('services.openai.urls.text-to-speech'),
             [

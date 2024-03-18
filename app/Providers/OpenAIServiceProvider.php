@@ -30,7 +30,7 @@ class OpenAIServiceProvider extends ServiceProvider
                 ->timeout(3600)
                 ->withToken(config('services.openai.key'));
 
-            return new \App\Services\OpenAIService($client);
+            return new OpenAIService($client);
         });
     }
 }

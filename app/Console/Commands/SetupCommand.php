@@ -27,7 +27,7 @@ class SetupCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $stack = select(
             label: 'Choose your frontend stack',
