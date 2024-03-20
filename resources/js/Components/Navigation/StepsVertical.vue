@@ -1,13 +1,12 @@
 <script setup>
-
+defineProps({
+    steps: Array,
+})
 </script>
 
 <template>
     <ul class="steps steps-vertical">
-        <li class="step step-primary">Register</li>
-        <li class="step step-primary">Choose plan</li>
-        <li class="step">Purchase</li>
-        <li class="step">Receive Product</li>
+        <li v-for="step in steps" class="step" :class="{'step-primary': step.active}">{{ step.title }}</li>
     </ul>
 </template>
 

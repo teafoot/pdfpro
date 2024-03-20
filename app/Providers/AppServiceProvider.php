@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::unguard();
 
-        //        View::share(['schema' => ['organization' => app(SchemaOrg::class)->organization()]]);
+        // View::share(['schema' => ['organization' => app(SchemaOrg::class)->organization()]]);
     }
 }
