@@ -5,24 +5,23 @@
 <template>
     <footer class="footer p-10 bg-base-200 text-base-content">
         <nav>
-            <h6 class="footer-title">Services</h6>
-            <a class="link link-hover">Branding</a>
-            <a class="link link-hover">Design</a>
-            <a class="link link-hover">Marketing</a>
-            <a class="link link-hover">Advertisement</a>
+            <h6 class="footer-title">Features</h6>
+            <a class="link link-hover">Split PDFs</a>
+            <a class="link link-hover">Bookmark Detection</a>
+            <a class="link link-hover">Batch Processing</a>
+            <a class="link link-hover">Secure Storage</a>
         </nav>
         <nav>
             <h6 class="footer-title">Company</h6>
             <a class="link link-hover">About us</a>
             <a class="link link-hover">Contact</a>
-            <a class="link link-hover">Jobs</a>
-            <a class="link link-hover">Press kit</a>
+            <a :href="route('blog.index')">Blog</a>
         </nav>
         <nav>
             <h6 class="footer-title">Legal</h6>
-            <a :href="route('terms.show')" class="link link-hover">Terms of use</a>
-            <a :href="route('policy.show')" class="link link-hover">Privacy policy</a>
-            <a class="link link-hover">Cookie policy</a>
+            <a :href="route('terms.show')" class="link link-hover">Terms of Service</a>
+            <a :href="route('policy.show')" class="link link-hover">Privacy Policy</a>
+            <a class="link link-hover">Cookie Policy</a>
         </nav>
         <form>
             <h6 class="footer-title">Newsletter</h6>

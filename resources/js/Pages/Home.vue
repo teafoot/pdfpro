@@ -1,6 +1,6 @@
 <script setup>
 import Hero from "@/Components/Hero.vue";
-import Partners from "@/Components/Partners.vue";
+// import Partners from "@/Components/Partners.vue";
 import ContentWithImage from "@/Components/ContentWithImage.vue";
 import Plans from "@/Components/Plans.vue";
 import Faq from "@/Components/Faq.vue";
@@ -18,7 +18,6 @@ defineProps({
 <template >
     <HomeLayout>
         <Hero/>
-        <Partners/>
         <ContentWithImage/>
         <Plans/>
         <Faq/>

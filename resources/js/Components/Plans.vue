@@ -4,50 +4,46 @@ defineProps({currentSubscription: String})
 
 const plans = [
     {
-        name: 'Free',
-        slug: 'free',
-        description: 'Individuals or small businesses with moderate social media needs.',
+        name: 'Basic',
+        slug: 'basic',
+        description: 'Ideal for individuals or small businesses with basic PDF splitting needs.',
         price: '0',
         interval: 'month',
         features: [
-            'Feature 1',
-            'Feature 2',
-            'Feature 3',
-            'Feature 4',
-            'Feature 5',
+            'Split up to 5 PDFs per month',
+            'Access to basic bookmark detection',
+            'Download individual chapters',
+            'Email support',
+            'Community access',
         ],
-        // productId: 1,
-        // variantId: 1,
     },
     {
-        name: 'Starter',
-        slug: 'starter', // used by stripe, should be your stripe price id
-        description: 'Individuals or small businesses with moderate social media needs.',
-        price: '9.99',
+        name: 'Standard',
+        slug: 'standard', // used by stripe, should be your stripe price id
+        description: 'Perfect for regular users with advanced splitting requirements.',
+        price: '14.99',
         interval: 'month',
         features: [
-            'Everything in free',
-            'Feature 6',
-            'Feature 7',
-            'Feature 8',
+            'Split up to 50 PDFs per month',
+            'Advanced bookmark detection',
+            'Batch download of chapters',
+            'Priority email support',
+            'No ads',
         ],
-        // productId: 193449, // for lemonsqueezy only
-        // variantId: 255829, // for lemonsqueezy only
     },
     {
-        name: 'Pro',
-        slug: 'pro', // used by stripe, should be your stripe price id
-        description: 'Professional bloggers, influencers, or mid-sized businesses.',
-        price: '19.99',
+        name: 'Premium',
+        slug: 'premium', // used by stripe, should be your stripe price id
+        description: 'Designed for professionals and businesses with high-volume processing.',
+        price: '29.99',
         interval: 'month',
         features: [
-            'Everything in "Pro"',
-            'Feature 9',
-            'Feature 10',
-            'Feature 11',
+            'Unlimited PDF splits per month',
+            'Premium bookmark detection with AI assistance',
+            'API access for automated workflows',
+            'Dedicated customer support',
+            'Custom branding for split PDFs',
         ],
-        // productId: 193449, // for lemonsqueezy only
-        // variantId: 255829, // for lemonsqueezy only
     },
 ];
 </script>
