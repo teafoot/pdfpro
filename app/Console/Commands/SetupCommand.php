@@ -15,7 +15,7 @@ class SetupCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'larafast:install';
+    protected $signature = 'pdfchapterpro:install';
 
     /**
      * The console command description.
@@ -54,7 +54,7 @@ class SetupCommand extends Command
             '--verification' => $verification,
         ]);
 
-        info('LaraFast Installed Successfully');
+        info('PDF ChapterPro Installed Successfully');
         info('Now run:');
         info('npm install');
         info('npm run build');

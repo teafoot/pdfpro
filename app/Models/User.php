@@ -78,6 +78,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(SocialAccount::class);
     }
 
+    public function pdfUploads()
+    {
+        return $this->hasMany(PdfUpload::class);
+    }
+
     // End Relations
 
     public function canAccessPanel(Panel $panel): bool

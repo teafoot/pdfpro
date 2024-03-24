@@ -23,9 +23,13 @@
         "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.8",
         "lemonsqueezy/laravel": "^1.5",
+        "mikehaertl/php-pdftk": "^0.13.1",
         "sentry/sentry-laravel": "^4.2",
+        "setasign/fpdi-tcpdf": "^2.3",
+        "smalot/pdfparser": "^2.9",
         "spatie/laravel-sitemap": "^7.2",
         "spatie/schema-org": "^3.23",
+        "tecnickcom/tcpdf": "^6.7",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

@@ -11,6 +11,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\PdfController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,4 +66,9 @@ Route::middleware([
     Route::middleware([Subscribed::class])->group(function () {
         // Add endpoints that are only for subscribed users
     });
+
+    Route::get('/user/uploads', [PdfController::class, 'index']);
+        // ->middleware('auth');
+    Route::post('/user/uploads', [PdfController::class, 'upload']);
+    Route::post('/user/uploads/split', [PdfController::class, 'split']);
 });
