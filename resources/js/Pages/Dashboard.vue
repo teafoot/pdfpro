@@ -115,6 +115,7 @@ export default {
             this.uploads.push(data);
             this.message = 'PDF uploaded successfully!';
             this.$refs.pdfInput.value = '';
+            this.fetchUploads();
         })
         .catch(error => {
             this.message = 'There was an error uploading the file: ' + error.message;
@@ -140,16 +141,17 @@ export default {
       })
         .then(data => {
             this.message = data.message;
+            this.fetchUploads();
         })
         .catch(error => {
             this.message = 'There was an error splitting the file: ' + error.message;
         });
     },
 
-    // viewPdf(upload) {
-    //   // Open the PDF in a new tab
-    //   window.open(upload.file_path, '_blank');
-    // },
+    viewPdf(upload) {
+      // Open the PDF in a new tab
+      window.open(upload.file_path, '_blank');
+    },
     // downloadPdf(upload) {
     //   // Call a backend endpoint to download the PDF
     //   fetch(`/user/uploads/${upload.id}/download`, {

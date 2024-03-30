@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('original_filename');
             $table->string('file_path');
             $table->enum('status', ['pending', 'converted', 'processing', 'completed', 'failed'])->default('pending');
-            $table->json('chapter_paths')->nullable();
+            // $table->json('chapter_paths')->nullable();
+            $table->longText('extracted_text')->nullable();
             $table->timestamps();
         });
     }

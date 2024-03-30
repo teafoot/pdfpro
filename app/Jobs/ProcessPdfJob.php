@@ -27,7 +27,7 @@ class ProcessPdfJob implements ShouldQueue
         $this->pdfUpload->update(['status' => 'processing']);
         $success = app(PdfService::class)->process($this->pdfUpload);
 
-        $status = $success ? 'completed' : 'failed';
-        $this->pdfUpload->update(['status' => $status]);
+        // $status = $success ? 'completed' : 'failed';
+        // $this->pdfUpload->update(['status' => $status]);
     }
 }

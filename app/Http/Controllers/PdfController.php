@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\PdfUpload;
+use App\Models\PdfChapter;
 use App\Services\SchemaOrg;
 use Inertia\Inertia;
 
@@ -61,6 +62,11 @@ class PdfController extends Controller
             return response()->json(['message' => 'Unauthorized access to PDF upload.'], 403);
         }
     
+        $existingChapters = PdfChapter::where('pdf_upload_id', $pdfUpload->id)->count();
+        if ($existingChapters > 0) {
+            return response()->json(['message' => 'This PDF has already been split.'], 409);
+        }
+
         // Check if the status is not already 'processing' to avoid duplicate jobs
         // if ($pdfUpload->status == 'converted') {
             ProcessPdfJob::dispatch($pdfUpload);
@@ -69,40 +75,4 @@ class PdfController extends Controller
         //     return response()->json(['message' => 'PDF is not converted.'], 200);
         // }
     }
-
-    // public function process($pdfUpload)
-    // {
-    //     try {
-    //         // Use smalot/pdfparser to extract bookmarks (if they are stored as text)
-    //         $parser = new Parser();
-    //         $pdf = $parser->parseFile($pdfUpload->file_path);
-    //         $bookmarks = $this->extractBookmarks($pdf); // Implement this method based on your PDF structure
-
-    //         // Use FPDI to split the PDF
-    //         $pdf = new Fpdi();
-    //         $pageCount = $pdf->setSourceFile($pdfUpload->file_path);
-
-    //         foreach ($bookmarks as $bookmark) {
-    //             // Create a new PDF document for each chapter based on the bookmarks
-    //             $this->createChapterPdf($pdf, $bookmark, $pageCount); // Implement this method
-    //         }
-
-    //         // Update the status
-    //         $pdfUpload->update(['status' => 'completed']);
-    //     } catch (\Exception $e) {
-    //         // Handle any exceptions and update the status to 'failed'
-    //         $pdfUpload->update(['status' => 'failed']);
-    //         Log::error($e->getMessage());
-    //     }
-    // }
-
-    // private function extractBookmarks($pdf)
-    // {
-    //     // Implement logic to extract bookmarks from the text of the PDF
-    // }
-
-    // private function createChapterPdf($pdf, $bookmark, $pageCount)
-    // {
-    //     // Implement logic to create a new PDF file for each chapter
-    // }
 }

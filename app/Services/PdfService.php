@@ -3,10 +3,14 @@
 namespace App\Services;
 
 use App\Models\PdfUpload;
+use App\Models\PdfChapter;
 
-use Smalot\PdfParser\Parser;
 use setasign\Fpdi\Tcpdf\Fpdi;
 use mikehaertl\pdftk\Pdf;
+
+use Illuminate\Support\Facades\Storage;
+
+use App\Jobs\ExtractChapterPdfText;
 
 class PdfService
 {
@@ -62,7 +66,6 @@ class PdfService
                 }
 
                 $safeTitle = $this->sanitizeTitle($title);
-
                 $bookmarks[] = ['Title' => $safeTitle, 'Level' => $level, 'PageNumber' => $pageNumber];
             }
         }
@@ -97,7 +100,7 @@ class PdfService
         $pageCount = $fpdi->setSourceFile($sourceFilePath);
 
         $totalChapterPages = 0;
-        $chapterPaths = [];
+        // $chapterPaths = [];
 
         foreach ($bookmarks as $index => $bookmark) {
             $fpdi = new Fpdi();
@@ -122,18 +125,26 @@ class PdfService
                 $totalChapterPages++;
             }
 
-            $chapterFilename = ($index + 1) . '. Chapter - ' . $bookmark['Title'] . '.pdf';
-            $chapterFullPath = storage_path('app/public/chapters/' . $chapterFilename);
-
+            $chapterFilename = ($index + 1) . '. ' . $bookmark['Title'] . '.pdf';
+            $fileName = str_replace(['pdfs/','.pdf'], '', $pdfUpload->file_path);
+            $chapterRelativePath = $fileName.'/'.$chapterFilename;
+            $chapterFullPath = storage_path('app/public/'.$fileName.'/' . $chapterFilename);
             // Ensure the 'chapters' directory exists
             $chaptersDirectory = dirname($chapterFullPath);
             if (!file_exists($chaptersDirectory)) {
                 mkdir($chaptersDirectory, 0755, true);
             }
-
             // Save the chapter PDF to a file
             $fpdi->Output($chapterFullPath, 'F');
-            $chapterPaths[] = $chapterFullPath;
+
+            // $chapterPaths[] = $chapterFullPath;
+            $pdfChapter = PdfChapter::create([
+                'pdf_upload_id' => $pdfUpload->id,
+                'chapter_number' => $index + 1,
+                'chapter_title' => $bookmark['Title'],
+                'chapter_path' => $chapterRelativePath,
+            ]);
+            ExtractChapterPdfText::dispatch($pdfChapter);
         }
 
         // Assert that the total number of pages in all chapters equals the original page count
@@ -145,7 +156,10 @@ class PdfService
 
         $pdfUpload->update([
             'status' => 'completed',
-            'chapter_paths' => json_encode($chapterPaths),
+            // 'chapter_paths' => json_encode($chapterPaths),
         ]);
+
+        //remove final_converted (optional)
+        // Storage::disk('public')->delete($pdfUpload->file_path);
     }
 }

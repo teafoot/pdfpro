@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\PdfUpload;
 use mikehaertl\pdftk\Pdf;
 
+use App\Jobs\ExtractMainPdfText;
+
 class ConvertPdf implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -38,10 +40,12 @@ class ConvertPdf implements ShouldQueue
     public function handle()
     {
         // Define the full path to the uploaded PDF
-        $inputPdfPath = storage_path('app/public/' . $this->pdfUpload->file_path);
+        $inputFilename = str_replace('pdfs/', '', $this->pdfUpload->file_path);
+        $inputPdfPath = storage_path('app/public/pdfs/' . $inputFilename);
 
         // Define the path for the bookmarks file
-        $bookmarksPath = storage_path('app/public/pdfs/bookmarks.txt');
+        $bookmarksFilename = "bookmarks.txt";
+        $bookmarksPath = storage_path('app/public/pdfs/'.$bookmarksFilename);
 
         // Extract bookmarks to a file using mikehaertl\pdftk\Pdf
         $pdf = new Pdf($inputPdfPath);
@@ -60,7 +64,8 @@ class ConvertPdf implements ShouldQueue
         }
 
         // Define the path for the converted PDF
-        $convertedFilename = 'converted_' . $this->pdfUpload->original_filename;
+        // $convertedFilename = 'converted_' . $this->pdfUpload->original_filename;
+        $convertedFilename = 'converted_' . generateUniqueFilename($this->pdfUpload->original_filename);
         $convertedFilePath = 'pdfs/' . $convertedFilename;
         $outputPdfPath = storage_path('app/public/' . $convertedFilePath);
 
@@ -89,8 +94,11 @@ class ConvertPdf implements ShouldQueue
             'status' => 'converted',
         ]);
 
-        // Optionally, delete the intermediate files
-        // Storage::delete($convertedFilePath);
-        // Storage::delete($bookmarksPath);
+        // Use the relative path, not the absolute path
+        Storage::disk('public')->delete('pdfs/' . $inputFilename);
+        Storage::disk('public')->delete('pdfs/' . $convertedFilename);
+        Storage::disk('public')->delete('pdfs/' . $bookmarksFilename);
+
+        ExtractMainPdfText::dispatch($this->pdfUpload);
     }
 }
