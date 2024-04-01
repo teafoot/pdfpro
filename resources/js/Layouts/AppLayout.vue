@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Profile/Dropdown.vue';
 import DropdownLink from '@/Components/Profile/DropdownLink.vue';
 import NavLink from '@/Components/Profile/NavLink.vue';
 import ResponsiveNavLink from '@/Components/Profile/ResponsiveNavLink.vue';
+import FooterDashboard from '@/Components/FooterDashboard.vue';
 
 defineProps({
     title: String,
@@ -37,10 +38,10 @@ onMounted(() => {
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="min-h-screen">
+            <nav class="border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
@@ -278,8 +279,8 @@ onMounted(() => {
             </nav>
 
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header v-if="$slots.header" class="shadow">
+                <div class="max-w-9xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
             </header>
@@ -288,6 +289,8 @@ onMounted(() => {
             <main>
                 <slot />
             </main>
+
+            <FooterDashboard></FooterDashboard>
         </div>
     </div>
 </template>

@@ -23,6 +23,6 @@ export default {
     plugins: [forms, typography, require("daisyui")],
 
     daisyui: {
-        themes: true
+        themes: ["light", "dark", "cupcake"],
     }
 };

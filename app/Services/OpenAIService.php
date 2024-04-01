@@ -12,12 +12,19 @@ class OpenAIService
 
     public function __construct(PendingRequest $client)
     {
+        $client->baseUrl(config('services.openai.urls.base'));
+        $client->withHeaders([
+            'Authorization' => 'Bearer ' . config('services.openai.key'),
+            'Content-Type' => 'application/json',
+        ]);
         $this->client = $client;
     }
 
     public function completion($prompt, $model = 'gpt-3.5-turbo')
     {
-        return $this->client->post(config('services.openai.urls.completion'),
+        $completionUrl = config('services.openai.urls.completion');
+
+        return $this->client->post($completionUrl,
             [
                 'model' => $model,
                 'messages' => [

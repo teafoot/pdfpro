@@ -59,6 +59,22 @@ return [
             'tts-1' => 'tts-1',
         ],
     ],
+    'ollama' => [
+        'key' => env('OLLAMA_KEY'),
+        'urls' => [
+            'base' => 'http://127.0.0.1:11434/',
+            'completion' => 'api/chat',
+            // 'images' => 'images/generations',
+            // 'text-to-speech' => 'audio/speech',
+        ],
+        'models' => [
+            'dolphin-mistral' => 'dolphin-mistral',
+            // 'gpt4' => 'gpt-4-1106-preview',
+            // 'gpt3.5' => 'gpt-3.5-turbo',
+            // 'dalle' => 'dall-e-3',
+            // 'tts-1' => 'tts-1',
+        ],
+    ],
 
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),

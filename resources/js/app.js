@@ -1,7 +1,10 @@
 import './bootstrap';
 import '../css/app.css';
+import 'primeicons/primeicons.css'
 
 import { createApp, h } from 'vue';
+import PrimeVue from 'primevue/config';
+// import Wind from '@/presets/wind';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
@@ -15,6 +18,10 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(PrimeVue, {
+                unstyled: true,
+                // pt: Wind
+            })
             .mount(el);
     },
     progress: {

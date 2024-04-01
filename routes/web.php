@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\OllamaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,7 @@ Route::get('/blog/{article:slug}', [BlogController::class, 'article'])->name('bl
 
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
+    // config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
     // Here goes your auth user endpoints
@@ -67,8 +69,10 @@ Route::middleware([
         // Add endpoints that are only for subscribed users
     });
 
-    Route::get('/user/uploads', [PdfController::class, 'index']);
-        // ->middleware('auth');
-    Route::post('/user/uploads', [PdfController::class, 'upload']);
-    Route::post('/user/uploads/split', [PdfController::class, 'split']);
+    // Route::get('/user/uploads', [PdfController::class, 'index']);
+    //     // ->middleware('auth');
+    // Route::post('/user/uploads', [PdfController::class, 'upload']);
+    // Route::post('/user/uploads/split', [PdfController::class, 'split']);
 });
+
+// Route::post('/ollama/chat', [OllamaController::class, 'sendChatMessage']);
