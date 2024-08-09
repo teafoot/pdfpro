@@ -1,3 +1,13 @@
+## About pdfpro
+
+<p align="left">
+micro-SaaS for users to upload PDFs, split them by bookmarks/chapters, store
+and analyze text, and use OpenAI (Ollama) to communicate information about the documents. Implemented a
+user-friendly interface for uploading and managing PDFs, with features like drag-and-drop upload, file preview,
+and bookmark management. Integrated OpenAI’s Ollama API to enable users to ask questions and receive answers
+about their documents, improving their study efficiency.
+</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
